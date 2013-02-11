@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+#area {
+  opacity: 0.1;
+  z-index: 1;
+}
+
+#coordinates {
+  width: 200px;
+  height: 100px;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: white;
+  z-index: -1;
+}
