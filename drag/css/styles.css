@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+#coordinates {
+  width: 200px;
+  height: 100px;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: white;
+  z-index: 1;
+}
