@@ -9,10 +9,11 @@ function Circle(x, y, radius) {
   this.x = x;
   this.y = y;
   this.radius = radius;
-  this.render = function() {
+  this.dragging = false;
+  this.render = function(options) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
-    ctx.fillStyle = '#0000ff';
+    ctx.fillStyle = (this.dragging) ? '#00eeee' : '#0000ff';
     ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.fill();
@@ -57,12 +58,15 @@ window.addEventListener('load', function() {
       var circle = circles[dragging];
       circle.x = mouseX;
       circle.y = mouseY;
+      circle.dragging = true;
       circle.render();
       circle[dragging] = circle;
     }
   });
 
   canvas.addEventListener('mouseup', function(event) {
+    circles[dragging].dragging = false;
+    circles[dragging].render();
     dragging = undefined;
   });
 
