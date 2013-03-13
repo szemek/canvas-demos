@@ -1,6 +1,4 @@
 // Global variables
-var canvas;
-var ctx;
 var circles = [];
 
 function rand(n) {
@@ -14,12 +12,13 @@ function Circle(options) {
   self.y = options.y;
   self.color = options.color;
   self.radius = options.radius;
+  self.ctx = options.ctx;
   self.render = function() {
-    ctx.beginPath();
-    ctx.arc(self.x, self.y, self.radius, 0, 2 * Math.PI);
-    ctx.fillStyle = self.color;
-    ctx.fill();
-    ctx.closePath();
+    self.ctx.beginPath();
+    self.ctx.arc(self.x, self.y, self.radius, 0, 2 * Math.PI);
+    self.ctx.fillStyle = self.color;
+    self.ctx.fill();
+    self.ctx.closePath();
   }
 
   circles.push(self);
@@ -31,32 +30,22 @@ circles.render = function() {
   }
 };
 
-function init() {
-  canvas = document.querySelector('#area');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  ctx = canvas.getContext('2d');
-
+function draw_circles(ctx) {
   for (var i = 0; i < 250; i++) {
-    var x = rand(canvas.width);
-    var y = rand(canvas.height);
+    var x = rand(ctx.canvas.width);
+    var y = rand(ctx.canvas.height);
     var radius = rand(80) + 30;
     var r = rand(256), g = rand(256), b = rand(256);
     var a = 0.1 + 0.1 * Math.random();
     var color = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
-    var circle = new Circle({x: x, y: y, radius: radius, color: color});
-    circle.render();
+    var circle = new Circle({x: x, y: y, radius: radius, color: color, ctx: ctx});
   };
-
-  draw(0, 1000);
+  circles.render();
 }
 
-function draw(start, max) {
+function draw_text(ctx, start, max) {
   if(start <= max) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    circles.render();
-
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.font = 'italic 400px Lato';
     ctx.fillStyle = 'rgb(255,255,255)';
     ctx.fillText(start, 100, 500);
@@ -64,9 +53,28 @@ function draw(start, max) {
     ctx.strokeText(start, 100, 500);
     ctx.lineWidth = 5;
     setTimeout(function() {
-      draw(start+1, max);
+      draw_text(ctx, start+1, max);
     }, 0);
   }
+}
+
+function init() {
+  var canvas_circles = document.querySelector('#circles');
+  canvas_circles.width = window.innerWidth;
+  canvas_circles.height = window.innerHeight;
+  var ctx_circles = canvas_circles.getContext('2d');
+
+  var canvas_text = document.querySelector('#text');
+  canvas_text.width = window.innerWidth;
+  canvas_text.height = window.innerHeight;
+  var ctx_text = canvas_text.getContext('2d');
+
+  setTimeout(function() {
+    draw_circles(ctx_circles);
+  }, 0);
+  setTimeout(function() {
+    draw_text(ctx_text, 0, 1000);
+  }, 0);
 }
 
 window.addEventListener('load', init);
