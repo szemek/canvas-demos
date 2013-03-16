@@ -22,8 +22,8 @@ function Circle(x, y, radius) {
 
 window.addEventListener('load', function() {
   canvas = document.querySelector('#area');
-  canvas.width = document.width;
-  canvas.height = document.height;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
