@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
   canvas.addEventListener('mousemove', mouseHandler);
 
   window.addEventListener('resize', function() {
-    canvas.width = document.width;
-    canvas.height = document.height;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
   });
 });
