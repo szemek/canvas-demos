@@ -1,0 +1,17 @@
+body {
+  overflow: hidden;
+}
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+#ring {
+  z-index: -1;
+}
+
+#text {
+  z-index: 1;
+}
