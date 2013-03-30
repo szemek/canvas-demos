@@ -1,0 +1,45 @@
+/*!
+ *  Font Awesome 3.0.2
+ *  the iconic font designed for use with Twitter Bootstrap
+ *  -------------------------------------------------------
+ *  The full suite of pictographic icons, examples, and documentation
+ *  can be found at: http://fortawesome.github.com/Font-Awesome/
+ *
+ */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../font/awesome.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/*  Font Awesome styles
+    ------------------------------------------------------- */
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+
+  display: inline;
+  width: auto;
+  height: auto;
+  line-height: normal;
+  vertical-align: baseline;
+  background-image: none;
+  background-position: 0% 0%;
+  background-repeat: repeat;
+  margin-top: 0;
+}
+
+.icon-large:before {
+  vertical-align: -10%;
+  font-size: 1.5em;
+}
+
+.icon-2x {
+  font-size: 2em;
+}
+.icon-zoom-in:before              { content: "\f00e"; }
+.icon-zoom-out:before             { content: "\f010"; }

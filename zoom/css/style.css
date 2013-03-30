@@ -1,0 +1,9 @@
+body {
+  overflow: hidden;
+}
+
+#zoom {
+  position: fixed;
+  top: 0;
+  right: 10px;
+}
